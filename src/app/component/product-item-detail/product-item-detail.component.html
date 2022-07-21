@@ -1,0 +1,18 @@
+
+<div class="detail-container" >
+    <img class="img" src="{{product.url}}">
+   <div class="detail-item">
+
+        <h2 ><strong>{{product.name}}</strong></h2>
+        <p >{{product.price}}$</p>
+        <p>{{product.description}}</p>
+        <input type="number" id="quantity" value="1" name="quantity" min="1" max="50" #quantity >
+        <button (click)="addToCart(quantity.value)" style="color: rgb(89, 106, 255);">Submit</button>
+        <br>
+        <hr>
+        <a class="back-link" routerLink="/">Back to product list</a>
+   </div>
+    
+</div>
+
+

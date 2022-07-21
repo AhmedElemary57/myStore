@@ -1,0 +1,53 @@
+<div *ngIf="totalPrice!=0" class="cart-container">
+    <div>
+        <div *ngFor="let p of cartProducts$ |async" class="cart-item"   style="background-color:rgb(234, 255, 254); " >
+            <a (click)="sendProduct(p)" routerLink="/detail" >
+                <img class="product-image" src="{{p.product.url}}"/>
+            </a>
+            <div class="cart-item-details"> 
+                <p class="name">{{p.product.name}} </p>
+                <p class="price">{{p.product.price}}$ amount: {{p.quantity}}</p>
+                <p>Amount: </p>
+                <input type="number" id="quantity" value="{{p.quantity}}" name="quantity" min="0" max="50" #amount (change)="changeEvent(amount.value,p)" >
+                <br>
+                <button (click)="removeCart(p)" class="btn btn-danger">Remove</button>
+            </div>
+    </div>
+    <p><strong> Cost : {{totalPrice}} $ </strong></p>
+
+    </div>
+    <div class="form-margin">
+        <form [formGroup]="myForm" (ngSubmit)="isValid()">
+            
+            <p><strong>Name</strong></p>
+            <input  type="text" placeholder ="  (minimum 3 characters)" formControlName="name"><br>
+            <span style="color: red;  font-size: x-small;"  *ngIf= "name && name.invalid"> The name is invalid </span>
+            
+            <p><strong>Address</strong></p>
+            <input adress="ngModel" type="text" placeholder="   (minimum 6 characters)" formControlName="adress"><br>
+            <span style="color: red;  font-size: x-small;"  *ngIf= "adress && adress.invalid"> The adress is invalid </span>
+
+            <p><strong>Cridit card number</strong></p>
+            <input ccNumber="ngModel" type="text" placeholder="   (16-digit-number)" formControlName="ccNumber"><br>
+            <span style="color: red;  font-size: x-small;"  *ngIf= "ccNumber && ccNumber.invalid"> The cridit card number is invalid </span>
+
+            <br>
+            <button style="color: rgb(89, 106, 255);" >
+                <p *ngIf="!myForm.valid" >                
+                    Submit 
+                </p>
+                <a *ngIf="myForm.valid"  routerLink="/confirmation">                
+                    Submit 
+                </a>
+            </button>
+            
+        </form>
+    </div>
+    
+</div>
+
+<div *ngIf="totalPrice==0" class="empty-cart-message">
+    <h1 style="color: rgb(250, 139, 3);">Empty cart :(</h1> 
+</div>
+
+

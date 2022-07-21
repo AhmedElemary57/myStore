@@ -1,0 +1,14 @@
+<div class="product-container" >
+
+    <a (click)="sendProduct()" routerLink="/detail" >
+        <img class="product-image" src="{{product.url}}"/>
+    </a>
+    <div class="select-input ">
+
+        <p>{{product.name}}</p>
+        <p>{{product.price}}</p>
+        <input type="number" id="quantity" value="1" name="quantity" min="1" max="50" #quantity >
+        <button (click)="addToCart(quantity.value)" style="color: rgb(89, 106, 255);">Submit</button>
+    </div>
+  
+</div>
